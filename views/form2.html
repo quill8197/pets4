@@ -7,10 +7,15 @@
 <body>
 
 <form action="#" method="post">
+    <check if="{{ isset(@errors['color'])}}">
+        <p>{{ @errors['color']}}</p>
+
+    </check>
+
     <label>Color
         <select class="form-control" name="color" id="color">
             <option>--Select a color--</option>
-            <repeat group="{{ @color }}" value="{{ @colorOption}}">
+            <repeat group="{{ @colors }}" value="{{ @colorOption}}">
                 <option>{{ @colorOption }}</option>
             </repeat>
 
