@@ -14,7 +14,17 @@ function validColor($color)
 
 function validString($string)
 {
-    if (!empty($string))
+    if (!empty($string) && ctype_alpha($string))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+function validQty($qty)
+{
+    if (!empty($qty) && ctype_digit($qty) && $qty > 1)
     {
         return true;
     }

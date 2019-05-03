@@ -68,15 +68,23 @@ $f3->route('GET|POST /order', function($f3)
     if(isset($_POST['animal']))
     {
         $animal = $_POST['animal'];
-        if(validString($animal))
+        $qty = $_POST['qty'];
+
+        //Add data to hive
+        $f3->set('animal', $animal);
+        $f3->set('qty', $qty);
+
+        if(validString($animal) && validQty($qty))
         {
             $_SESSION['animal'] = $animal;
+            $_SESSION['qty'] = $qty;
 
             $f3->reroute('/order2');
         }
         else
         {
             $f3->set("errors['animal']", "Please enter an animal.");
+            $f3->set("errors['qty']", "Please enter a quantity.");
         }
     }
 
