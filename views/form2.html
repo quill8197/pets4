@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animal Color</title>
+</head>
+<body>
+
+<form action="#" method="post">
+    <label>Color
+        <select class="form-control" name="color" id="color">
+            <option>--Select a color--</option>
+            <repeat group="{{ @color }}" value="{{ @colorOption}}">
+                <option>{{ @colorOption }}</option>
+            </repeat>
+
+        </select>
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
