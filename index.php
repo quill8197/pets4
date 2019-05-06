@@ -23,6 +23,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 $f3->set('colors', array('pink', 'green', 'blue'));
+$f3->set('costumes', array('vampire', 'doctor', 'zombie', 'taco', 'mermaid', 'witch'));
 
 // require validation file
 require_once('model/validation-functions.php');
@@ -94,11 +95,16 @@ $f3->route('GET|POST /order', function($f3)
 
 $f3->route('GET|POST /order2', function($f3)
 {
-    //$_SESSION = array();
     if (isset($_POST['color']))
     {
         $color = $_POST['color'];
-        if (validColor($color))
+        $costume = $_POST['costume'];
+
+        //Add data to hive
+        $f3->set('color', $color);
+        $f3->set('costume', $costume);
+
+        if (validColor($color) && validCostume($costume))
         {
             $_SESSION['color'] = $color;
             $f3->reroute('/results');
@@ -106,6 +112,7 @@ $f3->route('GET|POST /order2', function($f3)
         else
         {
             $f3->set("errors['color']", "Please enter a color.");
+            $f3->set("errors['costume']", "Please enter a costume");
         }
     }
     $view = new Template();

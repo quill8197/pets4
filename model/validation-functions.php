@@ -31,3 +31,12 @@ function validQty($qty)
 
     return false;
 }
+function validCostume($costume)
+{
+    if (!empty($costume))
+    {
+        return true;
+    }
+
+    return false;
+}

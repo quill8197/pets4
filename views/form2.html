@@ -15,12 +15,30 @@
     <label>Color
         <select class="form-control" name="color" id="color">
             <option>--Select a color--</option>
-            <repeat group="{{ @colors }}" value="{{ @colorOption}}">
-                <option>{{ @colorOption }}</option>
+            <repeat group="{{ @colors }}" value="{{ @colorOption }}">
+                <option
+                <check if="{{ !empty(@colors) }}">
+                    selected="selected"
+                </check>
+                >{{ @colorOption }}</option>
             </repeat>
-
         </select>
     </label>
+
+    <p>Select Costumes:
+        <check if="{{ @errors['costume'] }}">
+            <span class="err">{{ @errors['costume'] }}</span>
+        </check><br>
+
+        <repeat group="{{ @costumes }}" value="{{ @costOption }}">
+            <label><input type="checkbox" name="costume[]" value="{{ @costOption }}"
+                <check if="{{ !empty(@costume) && in_array(@costOption, @costume) }}">
+                    checked="checked"
+                </check>
+                >{{ @costOption }}
+            </label><br>
+        </repeat>
+    </p>
 
     <button type="submit">Submit</button>
 </form>
